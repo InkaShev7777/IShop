@@ -10,7 +10,10 @@ namespace DataAccessEF.Repositories
 		public CategoryRepository(DbA98a0dIlya29ilyaContext _db) : base(_db)
 		{
 		}
-
+		public List<Category> GetAll()
+		{
+			return this.db.Categories.ToList();
+		}
 	}
 }
 

@@ -1,0 +1,14 @@
+/Users/ilyaschevchenko/Projects/MarcetUserWeb/Domain/bin/Release/net6.0/Domain.deps.json
+/Users/ilyaschevchenko/Projects/MarcetUserWeb/Domain/bin/Release/net6.0/Domain.runtimeconfig.json
+/Users/ilyaschevchenko/Projects/MarcetUserWeb/Domain/bin/Release/net6.0/Domain.dll
+/Users/ilyaschevchenko/Projects/MarcetUserWeb/Domain/bin/Release/net6.0/Domain.pdb
+/Users/ilyaschevchenko/Projects/MarcetUserWeb/Domain/obj/Release/net6.0/Domain.csproj.AssemblyReference.cache
+/Users/ilyaschevchenko/Projects/MarcetUserWeb/Domain/obj/Release/net6.0/Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/ilyaschevchenko/Projects/MarcetUserWeb/Domain/obj/Release/net6.0/Domain.AssemblyInfoInputs.cache
+/Users/ilyaschevchenko/Projects/MarcetUserWeb/Domain/obj/Release/net6.0/Domain.AssemblyInfo.cs
+/Users/ilyaschevchenko/Projects/MarcetUserWeb/Domain/obj/Release/net6.0/Domain.csproj.CoreCompileInputs.cache
+/Users/ilyaschevchenko/Projects/MarcetUserWeb/Domain/obj/Release/net6.0/Domain.dll
+/Users/ilyaschevchenko/Projects/MarcetUserWeb/Domain/obj/Release/net6.0/refint/Domain.dll
+/Users/ilyaschevchenko/Projects/MarcetUserWeb/Domain/obj/Release/net6.0/Domain.pdb
+/Users/ilyaschevchenko/Projects/MarcetUserWeb/Domain/obj/Release/net6.0/Domain.genruntimeconfig.cache
+/Users/ilyaschevchenko/Projects/MarcetUserWeb/Domain/obj/Release/net6.0/ref/Domain.dll

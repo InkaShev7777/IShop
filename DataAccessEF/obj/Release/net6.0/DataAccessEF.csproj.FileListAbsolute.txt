@@ -1,0 +1,17 @@
+/Users/ilyaschevchenko/Projects/MarcetUserWeb/DataAccessEF/bin/Release/net6.0/DataAccessEF.deps.json
+/Users/ilyaschevchenko/Projects/MarcetUserWeb/DataAccessEF/bin/Release/net6.0/DataAccessEF.runtimeconfig.json
+/Users/ilyaschevchenko/Projects/MarcetUserWeb/DataAccessEF/bin/Release/net6.0/DataAccessEF.dll
+/Users/ilyaschevchenko/Projects/MarcetUserWeb/DataAccessEF/bin/Release/net6.0/DataAccessEF.pdb
+/Users/ilyaschevchenko/Projects/MarcetUserWeb/DataAccessEF/bin/Release/net6.0/Domain.dll
+/Users/ilyaschevchenko/Projects/MarcetUserWeb/DataAccessEF/bin/Release/net6.0/Domain.pdb
+/Users/ilyaschevchenko/Projects/MarcetUserWeb/DataAccessEF/obj/Release/net6.0/DataAccessEF.csproj.AssemblyReference.cache
+/Users/ilyaschevchenko/Projects/MarcetUserWeb/DataAccessEF/obj/Release/net6.0/DataAccessEF.GeneratedMSBuildEditorConfig.editorconfig
+/Users/ilyaschevchenko/Projects/MarcetUserWeb/DataAccessEF/obj/Release/net6.0/DataAccessEF.AssemblyInfoInputs.cache
+/Users/ilyaschevchenko/Projects/MarcetUserWeb/DataAccessEF/obj/Release/net6.0/DataAccessEF.AssemblyInfo.cs
+/Users/ilyaschevchenko/Projects/MarcetUserWeb/DataAccessEF/obj/Release/net6.0/DataAccessEF.csproj.CoreCompileInputs.cache
+/Users/ilyaschevchenko/Projects/MarcetUserWeb/DataAccessEF/obj/Release/net6.0/DataAccessEF.csproj.CopyComplete
+/Users/ilyaschevchenko/Projects/MarcetUserWeb/DataAccessEF/obj/Release/net6.0/DataAccessEF.dll
+/Users/ilyaschevchenko/Projects/MarcetUserWeb/DataAccessEF/obj/Release/net6.0/refint/DataAccessEF.dll
+/Users/ilyaschevchenko/Projects/MarcetUserWeb/DataAccessEF/obj/Release/net6.0/DataAccessEF.pdb
+/Users/ilyaschevchenko/Projects/MarcetUserWeb/DataAccessEF/obj/Release/net6.0/DataAccessEF.genruntimeconfig.cache
+/Users/ilyaschevchenko/Projects/MarcetUserWeb/DataAccessEF/obj/Release/net6.0/ref/DataAccessEF.dll

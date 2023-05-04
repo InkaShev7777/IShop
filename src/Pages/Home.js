@@ -1,13 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '../Components/Header'
 import Footer from '../Components/Footer'
 import Items from '../Components/Cards'
 import Categories from '../Components/Categories'
 import ShowFullItem from '../Components/ShowFullItem'
-<<<<<<< Updated upstream
-=======
 import axios from 'axios'
->>>>>>> Stashed changes
+import Pagination from '../Components/Pagination'
 
 class Home extends React.Component {
   constructor(props){
@@ -15,61 +13,40 @@ class Home extends React.Component {
     this.state ={
       orders:[],
       currentItems:[],
-<<<<<<< Updated upstream
-      items:[
-        {
-          id:1,
-          title:'Apple iPhone 14 Pro Max',
-          img:'https://jabko.ua/image/cache/catalog/products/2022/09/072301/photo_2022-09-07_22-54-13-1397x1397.jpg.webp',
-          desc:'',
-          price:'1600'
-        },
-        {
-          id:2,
-          title:'Apple iPhone 13 Pro Max',
-          img:'https://jabko.ua/image/cache/catalog/products/2021/09/142226/2021-09-14%2021.44.24%20(1)-1397x1397.jpg.webp',
-          desc:'',
-          price:'1600'
-        },
-        {
-          id:3,
-          title:'Apple iPhone 12 Pro Max',
-          img:'https://jabko.ua/image/cache/catalog/products/2022/04/081913/764f8071b21fa3d7b7430ba518665d4d-1397x1397.jpg.webp',
-          desc:'',
-          price:'1600'
-        }],
-        showFullItem: false,
-        fullItem:{}
-    }
-    this.state.currentItems = this.state.items
-=======
       items:[],
         showFullItem: false,
-        fullItem:{}
+        fullItem:{},
+        currentPage: 1,
+        currentPerPage: 1,
+        lastPageIndex:0,
+        firstPageIndex:0,
+        currentPageNow:[]
     }
->>>>>>> Stashed changes
     this.addToOrder = this.addToOrder.bind(this)
     this.deleteOrder = this.deleteOrder.bind(this)
     this.chooseCategory = this.chooseCategory.bind(this)
     this.onShowItem = this.onShowItem.bind(this)
+    this.setPaginate = this.setPaginate.bind(this)
+
+    this.state.lastPageIndex = this.state.currentPage * this.state.currentPerPage
+    this.state.firstPageIndex = this.state.lastPageIndex - this.state.currentPerPage
   }
-<<<<<<< Updated upstream
-=======
   componentDidMount() {
-      axios.get(`https://localhost:7031/api/ControllerClass/get-all-product`)
-      .then(res => {
-        const rest = res.data.value;
-        this.setState({items: rest });
-        this.state.currentItems = this.state.items
-      })
+    axios.get(`https://localhost:7031/api/ControllerClass/get-all-product`)
+    .then(res => {
+      const rest = res.data.value;
+      this.setState({items: rest });
+      this.state.currentItems = this.state.items
+      this.state.currentPageNow = this.state.currentItems.slice(this.state.firstPageIndex,this.state.lastPageIndex)
+    })
   }
->>>>>>> Stashed changes
   render() {
     return (
       <div className='wrapper'>
         <Header orders={this.state.orders} onDelete={this.deleteOrder} />
         <Categories chooseCategory={this.chooseCategory}/>
-        <Items onShowItem={this.onShowItem} items={this.state.currentItems} onAdd={this.addToOrder}/>
+        <Items onShowItem={this.onShowItem} items={this.state.currentPageNow} onAdd={this.addToOrder}/>
+        <Pagination currentPerPage ={this.state.currentPerPage} totalCount={this.state.currentItems.length} paginate={this.setPaginate}/>
         {this.state.showFullItem && <ShowFullItem item={this.state.fullItem} onShowItem={this.onShowItem} onAdd={this.addToOrder}/>}
         <Footer />
       </div>
@@ -96,14 +73,19 @@ class Home extends React.Component {
   chooseCategory(idCat){
     if(idCat === 1){
       this.setState({currentItems: this.state.items})
+      this.setState({currentPageNow: this.state.items.slice(this.state.firstPageIndex,this.state.lastPageIndex)})
       return
     }
     this.setState({
-<<<<<<< Updated upstream
-      currentItems: this.state.items.filter(el => el.id === idCat)
-=======
-      currentItems: this.state.items.filter(el => el.idCategory === idCat)
->>>>>>> Stashed changes
+      currentItems: this.state.items.filter(el => el.idCategory === idCat),
+      currentPageNow: this.state.items.filter(el => el.idCategory === idCat).slice(this.state.firstPageIndex,this.state.lastPageIndex)
+    })
+    console.log(this.state.currentPageNow);
+  }
+  
+  setPaginate(pageNumber){
+    this.setState({
+      currentPageNow: this.state.currentItems.slice((pageNumber * this.state.currentPerPage - this.state.currentPerPage),(pageNumber * this.state.currentPerPage))
     })
   }
 }

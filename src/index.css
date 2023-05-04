@@ -144,6 +144,24 @@ header .presentation::before{
     border-color: silver;
     transform: scale(1.1);
 }
+.pagination{
+    text-align: center;
+}
+.pagination div{
+    display: inline-flex;
+    background: #f2f2f2;
+    border-radius: 50px;
+    padding: 10px 20px;
+    margin-bottom: 25px;
+    margin-right: 15px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 500ms ease;
+}
+.pagination div:hover{
+    border-color: silver;
+    transform: scale(1.1);
+}
 .full-item{
     position: fixed;
     top: 0;
@@ -163,22 +181,13 @@ header .presentation::before{
     background: #fff;
     border-radius: 9px;
 }
-<<<<<<< Updated upstream
-=======
-/* .full-item > div p{
-    font-weight: 600;
-} */
->>>>>>> Stashed changes
 main{
     display: flex;
     width: 100%;
     flex-wrap: wrap;
     justify-content: space-between;
-<<<<<<< Updated upstream
-=======
     /* justify-content: center; */
     /* gap:10px; */
->>>>>>> Stashed changes
 }
 
 main .Card {
@@ -195,12 +204,9 @@ main .Card img, .full-item img{
     transition: transform 500ms ease;
     cursor: pointer;
 }
-<<<<<<< Updated upstream
-=======
 main .Card p, .full-item p{
     font-weight: 600;
 }
->>>>>>> Stashed changes
 main .Card img:hover, .full-item img:hover{
     transform: scale(1.03);
 }

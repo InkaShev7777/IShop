@@ -31,6 +31,12 @@ namespace MarcetUser.Controllers
         {
             return Results.Ok(this.unitOf.productRepository.GetAll());
         }
+        [HttpGet]
+        [Route("search-by-product")]
+        public IResult Search(string qweryText)
+        {
+            return Results.Ok(this.unitOf.productRepository.SearchProduct(qweryText));
+        }
     }
 }
 

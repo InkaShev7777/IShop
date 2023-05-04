@@ -18,7 +18,7 @@ namespace DataAccessEF.Repositories
 
         public List<Product> SearchProduct(string text)
         {
-            return this.db.Products.Where(x => x.Title.ToLower().Contains(text.ToLower())).ToList();
+            return this.db.Products.Where(x => (x.Title + " " + x.Model).ToLower().Contains(text.ToLower())).ToList();
         }
         public List<Product> GetPopularProducts()
         {

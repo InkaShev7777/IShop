@@ -163,11 +163,22 @@ header .presentation::before{
     background: #fff;
     border-radius: 9px;
 }
+<<<<<<< Updated upstream
+=======
+/* .full-item > div p{
+    font-weight: 600;
+} */
+>>>>>>> Stashed changes
 main{
     display: flex;
     width: 100%;
     flex-wrap: wrap;
     justify-content: space-between;
+<<<<<<< Updated upstream
+=======
+    /* justify-content: center; */
+    /* gap:10px; */
+>>>>>>> Stashed changes
 }
 
 main .Card {
@@ -184,6 +195,12 @@ main .Card img, .full-item img{
     transition: transform 500ms ease;
     cursor: pointer;
 }
+<<<<<<< Updated upstream
+=======
+main .Card p, .full-item p{
+    font-weight: 600;
+}
+>>>>>>> Stashed changes
 main .Card img:hover, .full-item img:hover{
     transform: scale(1.03);
 }

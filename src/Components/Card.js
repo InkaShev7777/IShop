@@ -6,6 +6,10 @@ export class Card extends Component {
       <div className='Card'>
         <img src={this.props.item.img} onClick={()=> this.props.onShowItem(this.props.item)}/>
         <h2>{this.props.item.title}</h2>
+<<<<<<< Updated upstream
+=======
+        <p>{this.props.item.model}</p>
+>>>>>>> Stashed changes
         <b>{this.props.item.price}$</b>
         <div className='addToBucket' onClick={()=> this.props.onAdd(this.props.item)}>+</div>
       </div>

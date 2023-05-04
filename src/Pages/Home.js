@@ -4,6 +4,10 @@ import Footer from '../Components/Footer'
 import Items from '../Components/Cards'
 import Categories from '../Components/Categories'
 import ShowFullItem from '../Components/ShowFullItem'
+<<<<<<< Updated upstream
+=======
+import axios from 'axios'
+>>>>>>> Stashed changes
 
 class Home extends React.Component {
   constructor(props){
@@ -11,6 +15,7 @@ class Home extends React.Component {
     this.state ={
       orders:[],
       currentItems:[],
+<<<<<<< Updated upstream
       items:[
         {
           id:1,
@@ -37,11 +42,28 @@ class Home extends React.Component {
         fullItem:{}
     }
     this.state.currentItems = this.state.items
+=======
+      items:[],
+        showFullItem: false,
+        fullItem:{}
+    }
+>>>>>>> Stashed changes
     this.addToOrder = this.addToOrder.bind(this)
     this.deleteOrder = this.deleteOrder.bind(this)
     this.chooseCategory = this.chooseCategory.bind(this)
     this.onShowItem = this.onShowItem.bind(this)
   }
+<<<<<<< Updated upstream
+=======
+  componentDidMount() {
+      axios.get(`https://localhost:7031/api/ControllerClass/get-all-product`)
+      .then(res => {
+        const rest = res.data.value;
+        this.setState({items: rest });
+        this.state.currentItems = this.state.items
+      })
+  }
+>>>>>>> Stashed changes
   render() {
     return (
       <div className='wrapper'>
@@ -77,7 +99,11 @@ class Home extends React.Component {
       return
     }
     this.setState({
+<<<<<<< Updated upstream
       currentItems: this.state.items.filter(el => el.id === idCat)
+=======
+      currentItems: this.state.items.filter(el => el.idCategory === idCat)
+>>>>>>> Stashed changes
     })
   }
 }

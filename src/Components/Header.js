@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { FaShoppingCart } from "react-icons/fa"
+import {FaSistrix} from "react-icons/fa"
 import Order from './Order';
 const showOrders = (props) =>{
   let sum = 0;
@@ -21,6 +22,7 @@ const showNothing = () =>{
 }
 function Header(props) {
   let [cartOpen, setCartOpen] = useState(false);
+  let [searchOpen, setSearchOpen] = useState(false);
   return (
     <header>
       <div>
@@ -36,6 +38,15 @@ function Header(props) {
               {props.orders.length > 0 ? showOrders(props) : showNothing()}
           </div>
         )
+        }
+        <FaSistrix onClick={()=> setSearchOpen(searchOpen= !searchOpen)} className={`search-button ${searchOpen && 'active'}`}/>
+        {
+          searchOpen&&(
+            <div className='search-cart'>
+                <input type="text" placeholder='Enter massage'/>
+                <button>Search</button>
+            </div>
+          )
         }
       </div>
       <div className='presentation'></div>

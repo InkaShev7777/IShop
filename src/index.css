@@ -45,7 +45,54 @@ header .shop-cart-button.active{
     color: #dc3d3d;
     transform: scale(1.5);
 }
-
+header .search-button{
+    float: right;
+    cursor: pointer;
+    transition: color, transform 500ms ease;
+    margin-right: 20px;
+    /* font-size: 30px; */
+}
+header .search-button:hover,
+header .search-button.active{
+    color: #dc3d3d;
+    transform: scale(1.5);
+}
+header .search-cart{
+    position: absolute;
+    top: 30px;
+    right: 0;
+    width: 450px;
+    background: #f1f1f1;
+    box-shadow: 5px 5px 5px 5px rgb(211, 210, 210);
+    z-index: 1000;
+    padding: 20px;
+    padding-bottom: 0;
+}
+header .search-cart input{
+    border: 1px solid transparent;
+    background: transparent;
+    margin-bottom: 20px;
+    text-decoration: none;
+    width: 70%;
+    height: 20px;
+    outline: none;
+}
+header .search-cart input:focus{
+    border-bottom: 1px solid gray;
+}
+header .search-cart button{
+    width: 20%;
+    height: 20px;
+    border: 1px solid gray;
+    background: none;
+    border-radius: 30px;
+    transition: border, transform 500ms ease;
+    margin-left: 10px;
+}
+header .search-cart button:hover{
+    border: 1px solid gray;
+    transform: scale(1.1);
+}
 header .shop-cart{
     position: absolute;
     top: 30px;

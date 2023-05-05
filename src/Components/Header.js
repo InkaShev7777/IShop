@@ -23,6 +23,7 @@ const showNothing = () =>{
 function Header(props) {
   let [cartOpen, setCartOpen] = useState(false);
   let [searchOpen, setSearchOpen] = useState(false);
+  let [text, setText] = useState("");
   return (
     <header>
       <div>
@@ -43,8 +44,8 @@ function Header(props) {
         {
           searchOpen&&(
             <div className='search-cart'>
-                <input type="text" placeholder='Enter massage'/>
-                <button>Search</button>
+                <input type="text" placeholder='Enter massage' onChange={(e) => setText(e.target.value)}/>
+                <div className='search-btn' onClick={()=> props.search(text)}>Search</div>
             </div>
           )
         }

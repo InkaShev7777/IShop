@@ -17,16 +17,17 @@ class Home extends React.Component {
         showFullItem: false,
         fullItem:{},
         currentPage: 1,
-        currentPerPage: 1,
+        currentPerPage: 3,
         lastPageIndex:0,
         firstPageIndex:0,
-        currentPageNow:[]
+        currentPageNow:[],
     }
     this.addToOrder = this.addToOrder.bind(this)
     this.deleteOrder = this.deleteOrder.bind(this)
     this.chooseCategory = this.chooseCategory.bind(this)
     this.onShowItem = this.onShowItem.bind(this)
     this.setPaginate = this.setPaginate.bind(this)
+    this.search = this.search.bind(this)
 
     this.state.lastPageIndex = this.state.currentPage * this.state.currentPerPage
     this.state.firstPageIndex = this.state.lastPageIndex - this.state.currentPerPage
@@ -43,7 +44,7 @@ class Home extends React.Component {
   render() {
     return (
       <div className='wrapper'>
-        <Header orders={this.state.orders} onDelete={this.deleteOrder} />
+        <Header orders={this.state.orders} search={this.search} onDelete={this.deleteOrder} />
         <Categories chooseCategory={this.chooseCategory}/>
         <Items onShowItem={this.onShowItem} items={this.state.currentPageNow} onAdd={this.addToOrder}/>
         <Pagination currentPerPage ={this.state.currentPerPage} totalCount={this.state.currentItems.length} paginate={this.setPaginate}/>
@@ -82,10 +83,26 @@ class Home extends React.Component {
     })
     console.log(this.state.currentPageNow);
   }
-  
   setPaginate(pageNumber){
     this.setState({
       currentPageNow: this.state.currentItems.slice((pageNumber * this.state.currentPerPage - this.state.currentPerPage),(pageNumber * this.state.currentPerPage))
+    })
+  }
+  search = (text)=> {
+    if(text.length > 0){
+      axios.get(`https://localhost:7031/api/ControllerClass/search-by-product?qweryText=${text}`)
+      .then(res => {
+        const rest = res.data.value
+        if(res.data.value.status !== 400){
+          this.setState({
+            currentItems: rest,
+            currentPageNow: rest.slice((1 * this.state.currentPerPage - this.state.currentPerPage),(1 * this.state.currentPerPage))
+            })
+        }
+      })
+    }
+    this.setState({
+      currentPageNow: this.state.currentItems.slice((1 * this.state.currentPerPage - this.state.currentPerPage),(1 * this.state.currentPerPage))
     })
   }
 }

@@ -23,6 +23,10 @@ export class Categories extends Component {
                 {el.title}
             </div>
         ))}
+        {/* <select>
+          <option>heloo</option>
+          <option>bff</option>
+        </select> */}
       </div>
     )
   }

@@ -80,7 +80,7 @@ header .search-cart input{
 header .search-cart input:focus{
     border-bottom: 1px solid gray;
 }
-header .search-cart button{
+/* header .search-cart button{
     width: 20%;
     height: 20px;
     border: 1px solid gray;
@@ -92,7 +92,7 @@ header .search-cart button{
 header .search-cart button:hover{
     border: 1px solid gray;
     transform: scale(1.1);
-}
+} */
 header .shop-cart{
     position: absolute;
     top: 30px;
@@ -175,6 +175,22 @@ header .presentation::before{
     font-size: 15px;
     font-weight: 300;
     color: #fff;
+}
+.search-btn{
+    display: inline-block;
+    background: #fff;
+    padding: 10px 20px;
+    border-radius: 50px;
+    margin-left: 20px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 500ms ease;
+    width: 70px;
+    text-align: center;
+}
+.search-btn:hover{
+    border-color: silver;
+    transform: scale(1.1);
 }
 .categories div{
     display: inline-block;

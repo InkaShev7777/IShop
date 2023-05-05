@@ -5,7 +5,30 @@ export class Categories extends Component {
     constructor(props){
         super(props)
         this.state ={
-            categories: []
+            categories: [],
+            filters:[
+            {
+              id:1,
+              title:'Без фильтров'
+            },
+            {
+              id:2,
+              title:'По цене к большему'
+            },
+            {
+              id:3,
+              title:'По цене к меньшему'
+            },
+            {
+              id:4,
+              title:'По алфавиту A-Z'
+            },
+            {
+              id:5,
+              title:'По алфавиту Z-A'
+            }
+          ],
+          filterNow:1
         }
     }
     componentDidMount() {
@@ -23,10 +46,11 @@ export class Categories extends Component {
                 {el.title}
             </div>
         ))}
-        {/* <select>
-          <option>heloo</option>
-          <option>bff</option>
-        </select> */}
+        <select onChange={(e)=> this.props.filter(this.state.filters[e.target.selectedIndex].id)}>
+          {this.state.filters.map((el)=>(
+            <option key={el.id}>{el.title}</option>
+          ))}
+        </select>
       </div>
     )
   }

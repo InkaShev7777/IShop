@@ -28,6 +28,7 @@ class Home extends React.Component {
     this.onShowItem = this.onShowItem.bind(this)
     this.setPaginate = this.setPaginate.bind(this)
     this.search = this.search.bind(this)
+    this.filterID = this.filterID.bind(this)
 
     this.state.lastPageIndex = this.state.currentPage * this.state.currentPerPage
     this.state.firstPageIndex = this.state.lastPageIndex - this.state.currentPerPage
@@ -45,7 +46,7 @@ class Home extends React.Component {
     return (
       <div className='wrapper'>
         <Header orders={this.state.orders} search={this.search} onDelete={this.deleteOrder} />
-        <Categories chooseCategory={this.chooseCategory}/>
+        <Categories filter={this.filterID} chooseCategory={this.chooseCategory}/>
         <Items onShowItem={this.onShowItem} items={this.state.currentPageNow} onAdd={this.addToOrder}/>
         <Pagination currentPerPage ={this.state.currentPerPage} totalCount={this.state.currentItems.length} paginate={this.setPaginate}/>
         {this.state.showFullItem && <ShowFullItem item={this.state.fullItem} onShowItem={this.onShowItem} onAdd={this.addToOrder}/>}
@@ -104,6 +105,42 @@ class Home extends React.Component {
     this.setState({
       currentPageNow: this.state.currentItems.slice((1 * this.state.currentPerPage - this.state.currentPerPage),(1 * this.state.currentPerPage))
     })
+  }
+  filterID(id){
+    const comparePriceUP = (a,b)=>a.price - b.price
+    const comparePriceDOWN = (a,b)=>b.price - a.price
+    const compareNameUP = (a, b) => a.title < b.title ? -1 : 1;
+    const compareNameDOWN = (a, b) => a.title > b.title ? -1 : 1;
+    if(id === 1){
+      this.setState({
+        currentItems:this.state.items,
+        currentPageNow: this.state.items.slice((1 * this.state.currentPerPage - this.state.currentPerPage),(1 * this.state.currentPerPage))
+      })
+    }
+    if(id === 2){
+      const byPrice = this.state.currentItems.sort(comparePriceUP)
+      this.setState({
+        currentPageNow: byPrice.slice((1 * this.state.currentPerPage - this.state.currentPerPage),(1 * this.state.currentPerPage))
+      })
+    }
+    if(id === 3){
+      const byPrice = this.state.currentItems.sort(comparePriceDOWN)
+      this.setState({
+        currentPageNow: byPrice.slice((1 * this.state.currentPerPage - this.state.currentPerPage),(1 * this.state.currentPerPage))
+      })
+    }
+    if(id === 4){
+      const byPrice = this.state.currentItems.sort(compareNameUP)
+      this.setState({
+        currentPageNow: byPrice.slice((1 * this.state.currentPerPage - this.state.currentPerPage),(1 * this.state.currentPerPage))
+      })
+    }
+    if(id === 5){
+      const byPrice = this.state.currentItems.sort(compareNameDOWN)
+      this.setState({
+        currentPageNow: byPrice.slice((1 * this.state.currentPerPage - this.state.currentPerPage),(1 * this.state.currentPerPage))
+      })
+    }
   }
 }
 export default Home

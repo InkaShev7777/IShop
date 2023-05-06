@@ -21,6 +21,8 @@ class Home extends React.Component {
         lastPageIndex:0,
         firstPageIndex:0,
         currentPageNow:[],
+        chooseID:1,
+        idCatNow:1
     }
     this.addToOrder = this.addToOrder.bind(this)
     this.deleteOrder = this.deleteOrder.bind(this)
@@ -74,15 +76,20 @@ class Home extends React.Component {
   }
   chooseCategory(idCat){
     if(idCat === 1){
-      this.setState({currentItems: this.state.items})
-      this.setState({currentPageNow: this.state.items.slice(this.state.firstPageIndex,this.state.lastPageIndex)})
+      this.setState({
+        currentItems: this.state.items,
+        currentPageNow: this.state.items.slice(this.state.firstPageIndex,this.state.lastPageIndex),
+        idCatNow:1
+      })
+      setTimeout(this.filterID,1,this.state.chooseID)
       return
     }
     this.setState({
       currentItems: this.state.items.filter(el => el.idCategory === idCat),
-      currentPageNow: this.state.items.filter(el => el.idCategory === idCat).slice(this.state.firstPageIndex,this.state.lastPageIndex)
+      currentPageNow: this.state.items.filter(el => el.idCategory === idCat).slice(this.state.firstPageIndex,this.state.lastPageIndex),
+      idCatNow:idCat
     })
-    console.log(this.state.currentPageNow);
+    setTimeout(this.filterID,1,this.state.chooseID)
   }
   setPaginate(pageNumber){
     this.setState({
@@ -99,25 +106,35 @@ class Home extends React.Component {
             currentItems: rest,
             currentPageNow: rest.slice((1 * this.state.currentPerPage - this.state.currentPerPage),(1 * this.state.currentPerPage))
             })
+            setTimeout(this.filterID,1,this.state.chooseID)
         }
       })
     }
     this.setState({
       currentPageNow: this.state.currentItems.slice((1 * this.state.currentPerPage - this.state.currentPerPage),(1 * this.state.currentPerPage))
     })
+    setTimeout(this.filterID,1,this.state.chooseID)
   }
   filterID(id){
     const comparePriceUP = (a,b)=>a.price - b.price
     const comparePriceDOWN = (a,b)=>b.price - a.price
-    const compareNameUP = (a, b) => a.title < b.title ? -1 : 1;
-    const compareNameDOWN = (a, b) => a.title > b.title ? -1 : 1;
+    const compareNameUP = (a, b) => a.title < b.title ? -1 : 1
+    const compareNameDOWN = (a, b) => a.title > b.title ? -1 : 1
+
+    this.setState({chooseID:id})
+
     if(id === 1){
-      this.setState({
-        currentItems:this.state.items,
-        currentPageNow: this.state.items.slice((1 * this.state.currentPerPage - this.state.currentPerPage),(1 * this.state.currentPerPage))
+      axios.get(`https://localhost:7031/api/ControllerClass/sort?sortID=1&catID=${this.state.idCatNow}`)
+      .then(res => {
+        const rest = res.data.value;
+        this.setState({
+          currentItems: rest,
+          currentPage:1,
+          currentPageNow:rest.slice((1 * this.state.currentPerPage - this.state.currentPerPage),(1 * this.state.currentPerPage))
+        });
       })
     }
-    if(id === 2){
+      if(id === 2){
       const byPrice = this.state.currentItems.sort(comparePriceUP)
       this.setState({
         currentPageNow: byPrice.slice((1 * this.state.currentPerPage - this.state.currentPerPage),(1 * this.state.currentPerPage))

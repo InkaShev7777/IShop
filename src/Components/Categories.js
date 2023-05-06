@@ -42,11 +42,11 @@ export class Categories extends Component {
     return (
       <div className='categories'>
         {this.state.categories.map(el => (
-            <div key={el.id} onClick={()=> this.props.chooseCategory(el.id)}>
+            <div key={el.id} onClick={()=> setTimeout(this.props.chooseCategory,1,el.id)}>
                 {el.title}
             </div>
         ))}
-        <select onChange={(e)=> this.props.filter(this.state.filters[e.target.selectedIndex].id)}>
+        <select onChange={(e)=> setTimeout(this.props.filter,1,this.state.filters[e.target.selectedIndex].id)}>
           {this.state.filters.map((el)=>(
             <option key={el.id}>{el.title}</option>
           ))}

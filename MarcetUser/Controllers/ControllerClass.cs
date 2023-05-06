@@ -35,7 +35,33 @@ namespace MarcetUser.Controllers
         [Route("search-by-product")]
         public IResult Search(string qweryText)
         {
-            return Results.Ok(this.unitOf.productRepository.SearchProduct(qweryText));
+            var tempMas = this.unitOf.productRepository.SearchProduct(qweryText);
+            if(tempMas.Count > 0)
+            {
+                return Results.Ok(tempMas);
+            }
+            return Results.Problem(statusCode:400);
+        }
+        [HttpGet]
+        [Route("sort")]
+        public IResult SortPriceUp(string sortID, string catID)
+        {
+            List<Product> tempMas;
+            if (Convert.ToInt32(sortID) == 1)
+            {
+                if(Convert.ToInt32(catID) == 1)
+                {
+                    tempMas = this.unitOf.productRepository.GetAllProduct();
+                    return Results.Ok(tempMas);
+                }
+                else
+                {
+                    tempMas = this.unitOf.productRepository.GetByCategoryID(Convert.ToInt32(catID));
+                    return Results.Ok(tempMas);
+                }
+                
+            }
+            return Results.Ok(sortID);
         }
     }
 }

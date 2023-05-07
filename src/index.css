@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
 *{
     margin: 0;
     padding: 0;
@@ -50,7 +51,6 @@ header .search-button{
     cursor: pointer;
     transition: color, transform 500ms ease;
     margin-right: 20px;
-    /* font-size: 30px; */
 }
 header .search-button:hover,
 header .search-button.active{
@@ -67,6 +67,42 @@ header .search-cart{
     z-index: 1000;
     padding: 20px;
     padding-bottom: 0;
+}
+header .auth-reg-cart{
+    position: absolute;
+    display: inline-block;
+    top: 30px;
+    right: 0;
+    width: 250px;
+    background: #f1f1f1;
+    box-shadow: 5px 5px 5px 5px rgb(211, 210, 210);
+    z-index: 1000;
+    padding: 20px;
+    padding-bottom: 0;
+}
+header .auth-reg-cart input{
+    border: 1px solid transparent;
+    width: 220px;
+    align-items: center;
+    outline: none;
+    padding: 5px 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+header .auth-reg-cart input:focus{
+    border-bottom: 1px solid gray;
+}
+header .auth-reg-cart p{
+    margin-left: 70px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    transition: color, transform 500ms ease;
+    font-weight: 100;
+}
+header .auth-reg-cart p:hover{
+    color: #5fa36a;
+    transform: scale(1.1);
+    cursor: pointer;
 }
 header .search-cart input{
     border: 1px solid transparent;
@@ -174,6 +210,25 @@ header .presentation::before{
     background: #f1f1f1;
     font-family: 'Montserrat',sans-serif;
 }
+
+
+
+.btn-confirm{
+    background: #fff;
+    padding: 10px 20px;
+    border-radius: 50px;
+    margin-left: 70px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 500ms ease;
+}
+.btn-confirm:hover{
+    border-color: silver;
+    transform: scale(1.1);
+}
+
+
+
 .search-btn{
     display: inline-block;
     background: #fff;

@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import { FaShoppingCart } from "react-icons/fa"
 import {FaSistrix} from "react-icons/fa"
-import Order from './Order';
-import axios from 'axios';
-import Registrate from './Registrate';
+import Order from './Order'
+import axios from 'axios'
 const showOrders = (props) =>{
   let sum = 0;
   props.orders.forEach(el => sum += Number.parseFloat(el.price))
@@ -13,6 +12,24 @@ const showOrders = (props) =>{
         <Order onDelete={props.onDelete} key={el.id} item={el}/>
       ))}
       <p className='summa'>Сумма: {new Intl.NumberFormat().format(sum)}$</p>
+      <button className='btn-buy' onClick={()=>{
+        if(sessionStorage.getItem('token') != null){
+          props.orders.forEach(el => axios.post('https://localhost:7031/api/ControllerClass/add-order',{
+            id:0,
+            idUser:sessionStorage.getItem('idUser'),
+            date:new Intl.DateTimeFormat(
+              'en-US', 
+              {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}
+              ).format(new Date()),
+            idProduct:el.id,
+            state:0
+          }))
+          props.clearorders();
+        }
+        else{
+          alert("You must authorization")
+        }
+      }}>Buy</button>
     </div>
   )
 }
@@ -40,11 +57,13 @@ function Header(props) {
           <li>Контакты</li>
           <li onClick={()=> setcartAuthorizeOpen(cartAuthorizeOpen =! cartAuthorizeOpen)}>Кабинет</li>
           {cartAuthorizeOpen && (
+            
             <div className='auth-reg-cart'>
               <input type='text' placeholder='Login' onChange={(e)=> setUserName(e.target.value)}></input>
               <input type='password' placeholder='Password' onChange={(e)=> setPassword(e.target.value)}></input>
               <button className='btn-confirm' onClick={()=>{
-                axios.post(`https://localhost:7031/api/Authentication/Login`,{
+                if(sessionStorage.getItem('token') == null){
+                  axios.post(`https://localhost:7031/api/Authentication/Login`,{
                     id:0,
                     userName:userName,
                     password:password
@@ -52,10 +71,17 @@ function Header(props) {
                 .then(res => {
                   const rest = res.data.value;
                   console.log(res);
-                  setcartAuthorizeOpen(false)
+                  sessionStorage.setItem('token',res.data.token);
+                  sessionStorage.setItem('idUser',res.data.id);
                 })
+                }
+                else{
+                  alert ("authorize")
+                }
+                setcartAuthorizeOpen(false)
               }}>Confirm</button>
               <p onClick={()=> {setcartAuthorizeOpen(false); setcartRegistrateOpen(true);}}>Registration</p>
+              <button style={{marginBottom:10}} className='btn-confirm' onClick={()=>{sessionStorage.clear();setcartAuthorizeOpen(false)}}>Log Out</button>
             </div>
           )}
           {cartRegistrateOpen &&(
@@ -73,7 +99,9 @@ function Header(props) {
                 })
               .then(res => {
                 const rest = res.data.value;
-                console.log(res);
+                console.log(res.data.token);
+                sessionStorage.setItem('token',res.data.token);
+                sessionStorage.setItem('idUser',res.data.id);
                 // add if (token == ok ) else(massage error)
         
                 //

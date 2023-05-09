@@ -226,8 +226,21 @@ header .presentation::before{
     border-color: silver;
     transform: scale(1.1);
 }
-
-
+header .btn-buy{
+    background: #fff;
+    padding: 10px 30px;
+    border-radius: 50px;
+    float: right;
+    position: relative;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 500ms ease;
+}
+.btn-buy:hover{
+    border-color: green;
+    transform: scale(1.1);
+}
 
 .search-btn{
     display: inline-block;
@@ -302,8 +315,6 @@ main{
     width: 100%;
     flex-wrap: wrap;
     justify-content: space-between;
-    /* justify-content: center; */
-    /* gap:10px; */
 }
 
 main .Card {

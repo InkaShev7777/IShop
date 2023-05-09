@@ -31,6 +31,7 @@ class Home extends React.Component {
     this.setPaginate = this.setPaginate.bind(this)
     this.search = this.search.bind(this)
     this.filterID = this.filterID.bind(this)
+    this.clearorders = this.clearorders.bind(this)
 
     this.state.lastPageIndex = this.state.currentPage * this.state.currentPerPage
     this.state.firstPageIndex = this.state.lastPageIndex - this.state.currentPerPage
@@ -47,7 +48,7 @@ class Home extends React.Component {
   render() {
     return (
       <div className='wrapper'>
-        <Header orders={this.state.orders} search={this.search} onDelete={this.deleteOrder} />
+        <Header clearorders={this.clearorders} orders={this.state.orders} search={this.search} onDelete={this.deleteOrder} />
         <Categories filter={this.filterID} chooseCategory={this.chooseCategory}/>
         <Items onShowItem={this.onShowItem} items={this.state.currentPageNow} onAdd={this.addToOrder}/>
         <Pagination currentPerPage ={this.state.currentPerPage} totalCount={this.state.currentItems.length} paginate={this.setPaginate}/>
@@ -55,6 +56,9 @@ class Home extends React.Component {
         <Footer />
       </div>
     )
+  }
+  clearorders(){
+    this.setState({orders:[]})
   }
   onShowItem(item){
     this.setState({fullItem:item})

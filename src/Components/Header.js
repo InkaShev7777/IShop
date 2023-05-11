@@ -85,7 +85,6 @@ function Header(props) {
             </div>
           )}
           {cartRegistrateOpen &&(
-            // <Registrate props={cartRegistrateOpen}/>
             <div className='auth-reg-cart'>
             <input type='text' placeholder='Login' onChange={(e)=> setUserName(e.target.value)}></input>
             <input type='password' placeholder='Password' onChange={(e)=> setPassword(e.target.value)}></input>
@@ -99,9 +98,15 @@ function Header(props) {
                 })
               .then(res => {
                 const rest = res.data.value;
-                console.log(res.data.token);
-                sessionStorage.setItem('token',res.data.token);
-                sessionStorage.setItem('idUser',res.data.id);
+                if(res.data.token != null){
+                  sessionStorage.setItem('token',res.data.token);
+                  sessionStorage.setItem('idUser',res.data.id);
+                }
+                else{
+                  alert("Login or Password is not correct")
+                }
+                // console.log(res.data.token);
+                
                 // add if (token == ok ) else(massage error)
         
                 //
@@ -126,7 +131,7 @@ function Header(props) {
           searchOpen&&(
             <div className='search-cart'>
                 <input type="text" placeholder='Enter massage' onChange={(e) => setText(e.target.value)}/>
-                <div className='search-btn' onClick={()=> props.search(text)}>Search</div>
+                <div className='search-btn' onClick={()=> {props.search(text); setSearchOpen(searchOpen= !searchOpen)}}>Search</div>
             </div>
           )
         }

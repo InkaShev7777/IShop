@@ -47,14 +47,17 @@ class Home extends React.Component {
   }
   render() {
     return (
-      <div className='wrapper'>
-        <Header clearorders={this.clearorders} orders={this.state.orders} search={this.search} onDelete={this.deleteOrder} />
-        <Categories filter={this.filterID} chooseCategory={this.chooseCategory}/>
-        <Items onShowItem={this.onShowItem} items={this.state.currentPageNow} onAdd={this.addToOrder}/>
-        <Pagination currentPerPage ={this.state.currentPerPage} totalCount={this.state.currentItems.length} paginate={this.setPaginate}/>
-        {this.state.showFullItem && <ShowFullItem item={this.state.fullItem} onShowItem={this.onShowItem} onAdd={this.addToOrder}/>}
-        <Footer />
+      <div>
+          <div className='wrapper'>
+          <Header clearorders={this.clearorders} orders={this.state.orders} search={this.search} onDelete={this.deleteOrder} />
+          <Categories filter={this.filterID} chooseCategory={this.chooseCategory}/>
+          <Items onShowItem={this.onShowItem} items={this.state.currentPageNow} onAdd={this.addToOrder}/>
+          <Pagination currentPerPage ={this.state.currentPerPage} totalCount={this.state.currentItems.length} paginate={this.setPaginate}/>
+          {this.state.showFullItem && <ShowFullItem item={this.state.fullItem} onShowItem={this.onShowItem} onAdd={this.addToOrder}/>}
+          </div>
+          <Footer></Footer>
       </div>
+      
     )
   }
   clearorders(){
@@ -106,18 +109,14 @@ class Home extends React.Component {
       .then(res => {
         const rest = res.data.value
         if(res.data.value.status !== 400){
+          console.log(rest)
           this.setState({
             currentItems: rest,
             currentPageNow: rest.slice((1 * this.state.currentPerPage - this.state.currentPerPage),(1 * this.state.currentPerPage))
-            })
-            setTimeout(this.filterID,1,this.state.chooseID)
+          })
         }
       })
     }
-    this.setState({
-      currentPageNow: this.state.currentItems.slice((1 * this.state.currentPerPage - this.state.currentPerPage),(1 * this.state.currentPerPage))
-    })
-    setTimeout(this.filterID,1,this.state.chooseID)
   }
   filterID(id){
     const comparePriceUP = (a,b)=>a.price - b.price

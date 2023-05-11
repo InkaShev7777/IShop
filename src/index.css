@@ -73,7 +73,7 @@ header .auth-reg-cart{
     display: inline-block;
     top: 30px;
     right: 0;
-    width: 250px;
+    width: 280px;
     background: #f1f1f1;
     box-shadow: 5px 5px 5px 5px rgb(211, 210, 210);
     z-index: 1000;
@@ -82,7 +82,7 @@ header .auth-reg-cart{
 }
 header .auth-reg-cart input{
     border: 1px solid transparent;
-    width: 220px;
+    width: 250px;
     align-items: center;
     outline: none;
     padding: 5px 10px;
@@ -192,7 +192,7 @@ header .presentation::after{
 header .presentation::before{
     content: 'по низким ценам';
     position: absolute;
-    top: 250px;
+    top: 280px;
     left: 50px;
     width: 300px;
     font-size: 15px;
@@ -245,13 +245,15 @@ header .btn-buy{
 .search-btn{
     display: inline-block;
     background: #fff;
-    padding: 10px 20px;
+    padding: 10px;
+    padding-right: 20px;
+    padding-left: 18px;
     border-radius: 50px;
     margin-left: 20px;
     cursor: pointer;
     border: 1px solid transparent;
     transition: all 500ms ease;
-    width: 70px;
+    width: 90px;
     text-align: center;
 }
 .search-btn:hover{
@@ -274,7 +276,9 @@ header .btn-buy{
     transform: scale(1.1);
 }
 .pagination{
-    text-align: center;
+    /* text-align: center; */
+    /* align-items: center; */
+    justify-content: center;
 }
 .pagination div{
     display: inline-flex;
@@ -367,7 +371,40 @@ main .addToBucket:hover,
 .full-item .addToBucket:hover{
     transform: scale(1.05) translateY(-5px);
 }
-footer{
-    text-align: center;
+.footer{
+    /* text-align: center;
+    margin-top: 100px; */
+    width: 100%;
     margin-top: 100px;
+    padding: 10px 50px;
+     padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #343434;
+    color: white;
+}
+.footer h4{
+    color: #ccc;
+    text-transform: uppercase;
+    font-size: 16px;
+    border-bottom: 1px solid #666;
+    padding-bottom: 3px; 
+}
+.footer a{
+    text-decoration: none;
+    transition: all .3s;
+    color: #666;
+}
+.footer a:hover{
+    color: #ccc;
+    text-decoration: underline;
+}
+.footer li a{
+    display: block;
+}
+.footer-icons a{
+    display: inline-block;
+    margin-right: 15px;
+    font-size: 20px;
 }

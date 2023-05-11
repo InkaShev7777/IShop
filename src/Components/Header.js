@@ -39,6 +39,13 @@ const showNothing = () =>{
     <h2>Товаров нет</h2>
   </div>)
 }
+const showAuthorizeNothing =() =>{
+  return(
+    <div className='empty'>
+        <h2>Пользователь уже в системе</h2>
+    </div>
+  )
+}
 function Header(props) {
   let [cartOpen, setCartOpen] = useState(false)
   let [cartAuthorizeOpen, setcartAuthorizeOpen] = useState(false)
@@ -56,8 +63,7 @@ function Header(props) {
           <li>Про нас</li>
           <li>Контакты</li>
           <li onClick={()=> setcartAuthorizeOpen(cartAuthorizeOpen =! cartAuthorizeOpen)}>Кабинет</li>
-          {cartAuthorizeOpen && (
-            
+          {cartAuthorizeOpen == true && sessionStorage.getItem('token')==null && (
             <div className='auth-reg-cart'>
               <input type='text' placeholder='Login' onChange={(e)=> setUserName(e.target.value)}></input>
               <input type='password' placeholder='Password' onChange={(e)=> setPassword(e.target.value)}></input>
@@ -73,6 +79,7 @@ function Header(props) {
                   console.log(res);
                   sessionStorage.setItem('token',res.data.token);
                   sessionStorage.setItem('idUser',res.data.id);
+                  sessionStorage.setItem('loginUser',userName);
                 })
                 }
                 else{
@@ -81,9 +88,18 @@ function Header(props) {
                 setcartAuthorizeOpen(false)
               }}>Confirm</button>
               <p onClick={()=> {setcartAuthorizeOpen(false); setcartRegistrateOpen(true);}}>Registration</p>
-              <button style={{marginBottom:10}} className='btn-confirm' onClick={()=>{sessionStorage.clear();setcartAuthorizeOpen(false)}}>Log Out</button>
             </div>
           )}
+
+          {cartAuthorizeOpen == true && sessionStorage.getItem('token') != null &&( 
+             <div className='auth-reg-cart'>
+                <div className='empty'>
+                  <h2 style={{fontSize:14}}>{sessionStorage.getItem('loginUser')} уже в системе</h2>
+                  <button style={{marginBottom:10, marginTop:10}} className='btn-confirm' onClick={()=>{sessionStorage.clear();setcartAuthorizeOpen(false)}}>Log Out</button>
+                </div>
+             </div>
+           )}
+           
           {cartRegistrateOpen &&(
             <div className='auth-reg-cart'>
             <input type='text' placeholder='Login' onChange={(e)=> setUserName(e.target.value)}></input>

@@ -408,3 +408,9 @@ main .addToBucket:hover,
     margin-right: 15px;
     font-size: 20px;
 }
+
+/* ADMIN STYLE */
+
+.list-group a:hover{
+  background-color: #f1f1f1;
+}

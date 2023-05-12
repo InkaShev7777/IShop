@@ -3,6 +3,7 @@ import { FaShoppingCart } from "react-icons/fa"
 import {FaSistrix} from "react-icons/fa"
 import Order from './Order'
 import axios from 'axios'
+import { Navigate, Route } from 'react-router-dom'
 const showOrders = (props) =>{
   let sum = 0;
   props.orders.forEach(el => sum += Number.parseFloat(el.price))
@@ -80,10 +81,13 @@ function Header(props) {
                   sessionStorage.setItem('token',res.data.token);
                   sessionStorage.setItem('idUser',res.data.id);
                   sessionStorage.setItem('loginUser',userName);
+                  if(res.data.isAdmin == true){
+                    window.location.assign('/admin')
+                  }
                 })
                 }
                 else{
-                  alert ("authorize")
+                  alert ("Что-то пошло не так :-( ")
                 }
                 setcartAuthorizeOpen(false)
               }}>Confirm</button>
@@ -99,7 +103,7 @@ function Header(props) {
                 </div>
              </div>
            )}
-           
+
           {cartRegistrateOpen &&(
             <div className='auth-reg-cart'>
             <input type='text' placeholder='Login' onChange={(e)=> setUserName(e.target.value)}></input>

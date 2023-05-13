@@ -81,6 +81,7 @@ function Header(props) {
                   sessionStorage.setItem('token',res.data.token);
                   sessionStorage.setItem('idUser',res.data.id);
                   sessionStorage.setItem('loginUser',userName);
+                  sessionStorage.setItem('passwordUser',password)
                   if(res.data.isAdmin == true){
                     window.location.assign('/admin')
                   }

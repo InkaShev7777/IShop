@@ -6,6 +6,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 import HomeAdmin from '../Components/Admin/HomeAdmin'
 import { useState, useEffect } from 'react'
 import CategoriesAdmin from '../Components/Admin/CategoriesAdmin'
+// import CategoriesAdmin rom './'
 
 export default function Admin() {
   const [toggle, setTogle] = useState(true)

@@ -414,3 +414,12 @@ main .addToBucket:hover,
 .list-group a:hover{
   background-color: #f1f1f1;
 }
+.inp-admin{
+    border: 1px solid gray;
+    width: 250px;
+    align-items: center;
+    outline: none;
+    padding: 5px 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}

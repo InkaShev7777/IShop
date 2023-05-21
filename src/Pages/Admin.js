@@ -66,12 +66,13 @@ export default function Admin() {
         setDataCategories(rest)
       })
   }
-  const getOrders = () => {
-    axios.get(`https://localhost:7031/api/ControllerClass/get-all-orders`)
+   async function getOrders(){
+    await axios.get(`https://localhost:7031/api/ControllerClass/get-all-orders`)
       .then(res => {
-        const rest = res.data.value;
+        const rest =  res.data.value;
         setCountOrders(rest.length)
         setDaataOrders(rest)
+        return rest
       })
   }
   const checkAdmin = () => {
@@ -100,7 +101,6 @@ export default function Admin() {
       setDaataAdmin(rest)
     })
   }
-
   return (
     <div>
       {isAuthoriseAdmin &&
@@ -115,13 +115,11 @@ export default function Admin() {
               <div style={{ height: 50 }} className='col-4 col-md-2'></div>
             }
             <div className='col'>
-              {idCat === 1 &&
-                <HomeAdmin countCategories={countCategories} countCustomers={countCustomers} countOrders={countOrders} countProducts={countProducts} Toggle={Toggle} />}
-              {idCat === 2 &&
-              <CategoriesAdmin  Toggle={Toggle} dataCategories={dataCategories}/>}
+              {idCat === 1 &&<HomeAdmin countCategories={countCategories} countCustomers={countCustomers} countOrders={countOrders} countProducts={countProducts} Toggle={Toggle} />}
+              {idCat === 2 &&<CategoriesAdmin  Toggle={Toggle} dataCategories={dataCategories}/>}
               {idCat === 3 &&<ProductsAdmin data={dataProduct}  Toggle={Toggle}/>}
               {idCat === 4 && <CustomersAdmin dataUsers={dataUsers} data={dataAdmins} Toggle={Toggle}/>}
-              {idCat === 5 &&  <OrdersAdmin data={dataOrders}  Toggle={Toggle}/>}
+              {idCat === 5 &&  <OrdersAdmin data={dataOrders} updateOrders={getOrders}  Toggle={Toggle}/>}
             </div>
           </div>
         </div>

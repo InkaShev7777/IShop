@@ -17,15 +17,15 @@ export default function Sidebar({ChooiceCat}) {
                 <i className='bi bi-card-checklist fs-5 me-3'></i>
                 <span>Categories</span>
             </a>
-            <a className='list-group-item py-2 my-1'>
+            <a className='list-group-item py-2 my-1'  onClick={()=>{ChooiceCat(3)}}>
                 <i className='bi bi-table fs-5 me-3'></i>
                 <span >Products</span>
             </a>
-            <a className='list-group-item py-2 my-1'>
+            <a className='list-group-item py-2 my-1'  onClick={()=>{ChooiceCat(4)}}>
                 <i className='bi bi-people fs-5 me-3'></i>
-                <span >Customers</span>
+                <span >Customers / Admins</span>
             </a>
-            <a className='list-group-item py-2 my-1'>
+            <a className='list-group-item py-2 my-1'  onClick={()=>{ChooiceCat(5)}}>
                 <i className='bi bi-basket3-fill fs-5 me-3'></i>
                 <span >Orders</span>
             </a>

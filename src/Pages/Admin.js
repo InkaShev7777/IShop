@@ -6,6 +6,9 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 import HomeAdmin from '../Components/Admin/HomeAdmin'
 import { useState, useEffect } from 'react'
 import CategoriesAdmin from '../Components/Admin/CategoriesAdmin'
+import CustomersAdmin from '../Components/Admin/CustomersAdmin'
+import OrdersAdmin from '../Components/Admin/OrdersAdmin'
+import ProductsAdmin from '../Components/Admin/ProductsAdmin'
 // import CategoriesAdmin rom './'
 
 export default function Admin() {
@@ -21,6 +24,7 @@ export default function Admin() {
   const [dataCategories,setDataCategories] = useState([]);
   const [dataUsers,setDaataUsers] = useState([]);
   const [dataOrders,setDaataOrders] = useState([]);
+  const [dataAdmins,setDaataAdmin] = useState([]);
 
 
   const Toggle = () => {
@@ -35,10 +39,11 @@ export default function Admin() {
     getProducts()
     getCategories()
     getOrders()
+    getAdmin()
     setTimeout(checkAdmin,1);
   }, [])
   const getUsers = () => {
-    axios.get(`https://localhost:7031/api/Authentication/get-all-user`)
+    axios.get(`https://localhost:7031/api/Authentication/get-all-users`)
       .then(res => {
         const rest = res.data.value;
         setCountCustomers(rest.length)
@@ -88,6 +93,13 @@ export default function Admin() {
       alert("Что-то пошло не так :-( ")
     }
   }
+  const getAdmin = () => {
+    axios.get(`https://localhost:7031/api/Authentication/get-all-admins`)
+    .then(res => {
+      const rest = res.data.value;
+      setDaataAdmin(rest)
+    })
+  }
 
   return (
     <div>
@@ -104,10 +116,12 @@ export default function Admin() {
             }
             <div className='col'>
               {idCat === 1 &&
-                <HomeAdmin countCategories={countCategories} countCustomers={countCustomers} countOrders={countOrders} countProducts={countProducts} Toggle={Toggle} />
-              }
+                <HomeAdmin countCategories={countCategories} countCustomers={countCustomers} countOrders={countOrders} countProducts={countProducts} Toggle={Toggle} />}
               {idCat === 2 &&
               <CategoriesAdmin  Toggle={Toggle} dataCategories={dataCategories}/>}
+              {idCat === 3 &&<ProductsAdmin data={dataProduct}  Toggle={Toggle}/>}
+              {idCat === 4 && <CustomersAdmin dataUsers={dataUsers} data={dataAdmins} Toggle={Toggle}/>}
+              {idCat === 5 &&  <OrdersAdmin data={dataOrders}  Toggle={Toggle}/>}
             </div>
           </div>
         </div>

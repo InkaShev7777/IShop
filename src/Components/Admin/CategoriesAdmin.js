@@ -51,7 +51,7 @@ class CategoriesAdmin extends React.Component {
                 <Nav Toggle={this.props.Toggle} />
                 <div className='container mt-5'>
                     <div className='text-end'>
-                        <input type="text" placeholder='Enter query...' onChange={this.handleFilter}/>
+                        <input style={{marginBottom:0}} className='inp-admin' type="text" placeholder='Enter query...' onChange={this.handleFilter}/>
                     </div>
                     {table}
                     {this.state.isAdd && <AddCategory addcat={this.addcat} isShow={this.isShow}/>}
@@ -73,11 +73,6 @@ class CategoriesAdmin extends React.Component {
         this.setState({records:tempArr})
     }
     editCategory(id,title){
-    //    const newDate = [...this.state.records]
-    //    newDate[id-1].title = title
-    // this.state.records[id-1].title = title
-    //   this.setState({records:[...this.state.records]})
-    // this.setState({...this.state.records,})
     const newdate = [...this.state.records]
     newdate.splice(id-1,1 ,{id,title})
     this.setState({records:newdate})

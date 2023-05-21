@@ -59,9 +59,20 @@ namespace MarcetUser.Controllers
                     tempMas = this.unitOf.productRepository.GetByCategoryID(Convert.ToInt32(catID));
                     return Results.Ok(tempMas);
                 }
-                
             }
             return Results.Ok(sortID);
+        }
+        [HttpPost]
+        [Route("add-order")]
+        public void AddToOrderTable(Order order)
+        {
+            this.unitOf.orderRepository.Add(order);
+        }
+        [HttpGet]
+        [Route("get-all-orders")]
+        public IResult GetAllOrders()
+        {
+            return Results.Ok(this.unitOf.orderRepository.GetAll());
         }
     }
 }

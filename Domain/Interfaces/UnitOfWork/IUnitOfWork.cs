@@ -5,6 +5,8 @@ namespace Domain.Interfaces.UnitOfWork
 	{
 		public ICategoryRepository categoryRepository { get; }
 		public IProductRepository productRepository { get; }
+		public IOrderRepository orderRepository { get; }
+		public IUserRepository userRepository { get; }
 		public int Complete();
 	}
 }

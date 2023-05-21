@@ -43,5 +43,11 @@ public partial class DbA98a0dIlya29ilyaContext : IdentityDbContext<IdentityUser>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        //modelBuilder.Entity<IdentityUserLogin<string>>().HasKey(x=> new {x.LoginProvider,x.ProviderKey});
+        //modelBuilder.Entity<IdentityUserRole<string>>().HasKey(x => new { x.RoleId,x.UserId });
+        //modelBuilder.Entity<IdentityUserToken<string>>().HasKey(x => new { x.UserId, x.LoginProvider, x.Name });
+        //modelBuilder.Entity<IdentityUser<string>>().HasKey(x => new { x.Id });
+
+
     }
 }

@@ -26,8 +26,53 @@ namespace MarcetUser.Controllers
 			this.configuration = _configuration;
 		}
 
+		[HttpGet]
+		[Route("get-all-admins")]
+		public async Task<IResult> GetAdmins()
+		{
+			var users = userManager.Users.ToList();
+			List<IdentityUser> admins = new List<IdentityUser>();
+			foreach(var item in users)
+			{
+                var t = await userManager.GetRolesAsync(item);
+                if (t.Count() > 0)
+                {
+                    var isAdmin = await userManager.IsInRoleAsync(item, t[0]);
+					if(isAdmin == true)
+					{
+						admins.Add(item);
+					}
+                }
+            }
+			return Results.Ok(admins);
+		}
 
-		[HttpPost]
+        [HttpGet]
+        [Route("get-all-users")]
+        public async Task<IResult> GetUsers()
+        {
+            var users = userManager.Users.ToList();
+            List<IdentityUser> admins = new List<IdentityUser>();
+            foreach (var item in users)
+            {
+                var t = await userManager.GetRolesAsync(item);
+                if (t.Count() > 0)
+                {
+                    var isAdmin = await userManager.IsInRoleAsync(item, t[0]);
+                    if (isAdmin != true)
+                    {
+                        admins.Add(item);
+                    }
+                }
+				else
+				{
+                    admins.Add(item);
+                }
+            }
+            return Results.Ok(admins);
+        }
+
+        [HttpPost]
 		[Route("regUser")]
 		public async Task<IActionResult> RegUser([FromBody] Registr model)
 		{
@@ -101,11 +146,20 @@ namespace MarcetUser.Controllers
 					authClaimse.Add(new Claim(ClaimTypes.Role, item));
 				}
 				var token = GetToken(authClaimse);
-				return Ok(new
+				var t = await userManager.GetRolesAsync(user);
+				var isAdmin = false;
+
+                if (t.Count() > 0)
+				{
+					isAdmin = await userManager.IsInRoleAsync(user, t[0]);
+				}
+
+                return Ok(new
 				{
 					Token = new JwtSecurityTokenHandler().WriteToken(token),
 					expiration = token.ValidTo,
-					user.Id
+					user.Id,
+					isAdmin
 				});
 			}
 			return Unauthorized();

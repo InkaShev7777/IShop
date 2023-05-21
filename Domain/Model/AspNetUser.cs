@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using MarcetUser;
 
-namespace MarcetUser;
+namespace Domain.Model;
 
 public partial class AspNetUser
 {
+    [Key]
     public string Id { get; set; } = null!;
 
     public string? UserName { get; set; }

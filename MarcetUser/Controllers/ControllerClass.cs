@@ -68,6 +68,12 @@ namespace MarcetUser.Controllers
         {
             this.unitOf.orderRepository.Add(order);
         }
+        [HttpPost]
+        [Route("update-order")]
+        public void UpdateOrder(Order order)
+        {
+            this.unitOf.orderRepository.Update(order);
+        }
         [HttpGet]
         [Route("get-all-orders")]
         public IResult GetAllOrders()

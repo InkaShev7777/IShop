@@ -69,6 +69,24 @@ namespace MarcetUser.Controllers
             this.unitOf.orderRepository.Add(order);
         }
         [HttpPost]
+        [Route("update-categories")]
+        public void Updatecatefgory(Category category)
+        {
+            this.unitOf.categoryRepository.Update(category);
+        }
+        [HttpPost]
+        [Route("add-category")]
+        public void Addcategory(Category category)
+        {
+            this.unitOf.categoryRepository.Add(category);
+        }
+        [HttpPost]
+        [Route("delete-category")]
+        public void DeleteCategory(Category category)
+        {
+            this.unitOf.categoryRepository.Delete(category.Id);
+        }
+        [HttpPost]
         [Route("update-order")]
         public void UpdateOrder(Order order)
         {
@@ -79,6 +97,12 @@ namespace MarcetUser.Controllers
         public IResult GetAllOrders()
         {
             return Results.Ok(this.unitOf.orderRepository.GetAll());
+        }
+        [HttpPost]
+        [Route("delete-order")]
+        public void DeleteOrder(int id)
+        {
+            this.unitOf.orderRepository.Delete(id);
         }
     }
 }

@@ -107,8 +107,12 @@ export default class OrdersAdmin extends React.Component {
         }
         this.props.updateOrders()
     }
-    DeleteById(id) {
+    async DeleteById(id) {
         const tempArr = this.state.records.filter((el) => { return el.id != id })
         this.setState({ records: tempArr })
+        await axios.post(`https://localhost:7031/api/ControllerClass/delete-order?id=${id}`)
+            .then(res => {
+            })
+            this.props.updateOrders()
     }
 }

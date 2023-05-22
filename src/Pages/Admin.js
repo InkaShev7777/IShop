@@ -116,8 +116,8 @@ export default function Admin() {
             }
             <div className='col'>
               {idCat === 1 &&<HomeAdmin countCategories={countCategories} countCustomers={countCustomers} countOrders={countOrders} countProducts={countProducts} Toggle={Toggle} />}
-              {idCat === 2 &&<CategoriesAdmin  Toggle={Toggle} dataCategories={dataCategories}/>}
-              {idCat === 3 &&<ProductsAdmin data={dataProduct}  Toggle={Toggle}/>}
+              {idCat === 2 &&<CategoriesAdmin getCategories={getCategories}  Toggle={Toggle} dataCategories={dataCategories}/>}
+              {idCat === 3 &&<ProductsAdmin data={dataProduct} dataCategory={dataCategories}  Toggle={Toggle}/>}
               {idCat === 4 && <CustomersAdmin dataUsers={dataUsers} data={dataAdmins} Toggle={Toggle}/>}
               {idCat === 5 &&  <OrdersAdmin data={dataOrders} updateOrders={getOrders}  Toggle={Toggle}/>}
             </div>

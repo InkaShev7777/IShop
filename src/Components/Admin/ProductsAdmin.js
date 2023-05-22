@@ -28,7 +28,16 @@ export default class ProductsAdmin extends React.Component {
                 },
                 {
                     name: 'ID Category',
-                    selector: row => row.idCategory
+                    selector: row => <div>  <select disabled>{
+                        this.props.dataCategory.map((el) => {if(el.id == row.idCategory ){
+                            return (<option selected>{el.title}</option>)
+                        }
+                        else if( el.id != 1){
+                            return (<option>{el.title}</option>)
+                        }
+                    })
+                    }
+                    </select></div>
                 },
                 {
                     name: 'Description',

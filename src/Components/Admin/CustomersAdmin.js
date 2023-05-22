@@ -18,15 +18,6 @@ export default class CustomersAdmin  extends React.Component {
                 {
                     name:'Email',
                     selector:row => row.email,
-                },
-                {
-                    name:"Action",
-                    cell: row => (
-                        <div>
-                             <button className='btn btn-primary' >Edit</button>
-                             <button style={{marginLeft:10}} className='btn btn-danger' onClick={()=> this.DeleteById(row.id)}>Delete</button>
-                        </div>
-                   )
                 }
             ],
             columnsUser:[
@@ -63,9 +54,7 @@ export default class CustomersAdmin  extends React.Component {
                     <div className='text-end'>
                         <input style={{marginBottom:0}} className='inp-admin' type="text" placeholder='Enter query...' onChange={this.handleFilterAdmin}/>
                     </div>
-                    <DataTable title='Admins' columns={this.state.columns} data={this.state.records} fixedHeader pagination actions={<button className='btn btn-success'>Add</button>}></DataTable>
-                    {/* {this.state.isAdd && <AddCategory addcat={this.addcat} isShow={this.isShow}/>} */}
-                    {/* {this.state.isEdit && <EditCategory id={this.state.editID} titleNow={this.state.titleNow} editCategory={this.editCategory} setEdit={this.setEdit}/>} */}
+                    <DataTable title='Admins' columns={this.state.columns} data={this.state.records} fixedHeader pagination ></DataTable>
                 </div>
       </div>
     )

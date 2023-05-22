@@ -1,10 +1,21 @@
 import React, { Component } from 'react'
 import DataTable from 'react-data-table-component'
 import Nav from './Nav'
+import AddProduct from './AddProduct'
+import EditProduct from './EditProduct'
 export default class ProductsAdmin extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            id:-1,
+            img:'',
+            title:'',
+            model:'',
+            price:0,
+            idCat:0,
+            desc:'',
+            countProduct:0,
+            popular:0,
             columns: [
                 {
                     name: 'ID',
@@ -71,16 +82,32 @@ export default class ProductsAdmin extends React.Component {
                     width: '200px',
                     cell: row => (
                         <div>
-                            <button className='btn btn-primary' >Edit</button>
+                            <button className='btn btn-primary' onClick={()=> {
+                                this.isEdit()
+                                this.setState({id:row.id})
+                                this.setState({img:row.img})
+                                this.setState({title:row.title})
+                                this.setState({model:row.model})
+                                this.setState({price:row.price})
+                                this.setState({idCat:row.idCategory})
+                                this.setState({desc:row.description})
+                                this.setState({countProduct:row.count})
+                                this.setState({popular:row.isPopular})
+
+                            }} >Edit</button>
                             <button style={{ marginLeft: 10 }} className='btn btn-danger' onClick={()=> this.DeleteById(row.id)}>Delete</button>
                         </div>
                     )
                 }
             ],
-            records: this.props.data
+            records: this.props.data,
+            addProduct:false,
+            isEdit:false
         }
         this.handleFilter = this.handleFilter.bind(this)
         this.DeleteById = this.DeleteById.bind(this)
+        this.isShow = this.isShow.bind(this)
+        this.isEdit = this.isEdit.bind(this)
     }
     render() {
         return (
@@ -90,9 +117,9 @@ export default class ProductsAdmin extends React.Component {
                     <div className='text-end'>
                         <input style={{marginBottom:0}} className='inp-admin' type="text" placeholder='Enter query...' onChange={this.handleFilter}/>
                     </div>
-                    <DataTable title='Products' columns={this.state.columns} data={this.state.records} fixedHeader pagination actions={<button className='btn btn-success'>Add</button>}></DataTable>
-                    {/* {this.state.isAdd && <AddCategory addcat={this.addcat} isShow={this.isShow}/>} */}
-                    {/* {this.state.isEdit && <EditCategory id={this.state.editID} titleNow={this.state.titleNow} editCategory={this.editCategory} setEdit={this.setEdit}/>} */}
+                    <DataTable title='Products' columns={this.state.columns} data={this.state.records} fixedHeader pagination actions={<button onClick={()=>{this.isShow()}} className='btn btn-success'>Add</button>}></DataTable>
+                    {this.state.addProduct && <AddProduct dataCategory={this.props.dataCategory}   isShow={this.isShow}/>}
+                    {this.state.isEdit && <EditProduct id={this.state.id} img={this.state.img} title={this.state.title} model={this.state.model} price={this.state.price} idCat={this.state.idCat} desc={this.state.desc}countProduct={this.state.countProduct} isPopular={this.state.popular}  dataCategory={this.props.dataCategory} isShow={this.isEdit}/>}
                 </div>
             </div>
         )
@@ -106,5 +133,11 @@ export default class ProductsAdmin extends React.Component {
     DeleteById(id){
         const tempArr = this.state.records.filter((el)=>{return el.id != id})
         this.setState({records:tempArr})
+    }
+    isShow(){
+        this.setState({addProduct: !this.state.addProduct})
+    }
+    isEdit(){
+        this.setState({isEdit:!this.state.isEdit})
     }
 }

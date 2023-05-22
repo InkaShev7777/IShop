@@ -423,3 +423,26 @@ main .addToBucket:hover,
     margin-bottom: 20px;
     border-radius: 5px;
 }
+.add-product{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 100px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+.add-product input{
+    width: 500px;
+    height: 30px;
+    margin: 5px 0px 5px 0px;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 14px;
+}
+.add-product select{
+    width: 500px;
+    height: 30px;
+    margin: 5px 0px 5px 0px;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 14px;
+}

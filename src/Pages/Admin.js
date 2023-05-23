@@ -58,6 +58,7 @@ export default function Admin() {
         setDataProduct(rest)
       })
   }
+
   const getCategories = () => {
     axios.get(`https://localhost:7031/api/ControllerClass/get-all-category`)
       .then(res => {
@@ -117,7 +118,7 @@ export default function Admin() {
             <div className='col'>
               {idCat === 1 &&<HomeAdmin countCategories={countCategories} countCustomers={countCustomers} countOrders={countOrders} countProducts={countProducts} Toggle={Toggle} />}
               {idCat === 2 &&<CategoriesAdmin getCategories={getCategories}  Toggle={Toggle} dataCategories={dataCategories}/>}
-              {idCat === 3 &&<ProductsAdmin data={dataProduct} dataCategory={dataCategories}  Toggle={Toggle}/>}
+              {idCat === 3 && <ProductsAdmin getProducts={getProducts} data={dataProduct} dataCategory={dataCategories}  Toggle={Toggle}/>}
               {idCat === 4 && <CustomersAdmin dataUsers={dataUsers} data={dataAdmins} Toggle={Toggle}/>}
               {idCat === 5 &&  <OrdersAdmin data={dataOrders} updateOrders={getOrders}  Toggle={Toggle}/>}
             </div>

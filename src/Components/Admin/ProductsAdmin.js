@@ -108,6 +108,7 @@ export default class ProductsAdmin extends React.Component {
         this.DeleteById = this.DeleteById.bind(this)
         this.isShow = this.isShow.bind(this)
         this.isEdit = this.isEdit.bind(this)
+        this.updateProduct = this.updateProduct.bind(this)
     }
     render() {
         return (
@@ -119,7 +120,7 @@ export default class ProductsAdmin extends React.Component {
                     </div>
                     <DataTable title='Products' columns={this.state.columns} data={this.state.records} fixedHeader pagination actions={<button onClick={()=>{this.isShow()}} className='btn btn-success'>Add</button>}></DataTable>
                     {this.state.addProduct && <AddProduct dataCategory={this.props.dataCategory}   isShow={this.isShow}/>}
-                    {this.state.isEdit && <EditProduct id={this.state.id} img={this.state.img} title={this.state.title} model={this.state.model} price={this.state.price} idCat={this.state.idCat} desc={this.state.desc}countProduct={this.state.countProduct} isPopular={this.state.popular}  dataCategory={this.props.dataCategory} isShow={this.isEdit}/>}
+                    {this.state.isEdit && <EditProduct updateProduct={this.updateProduct} getProducts={this.props.getProducts} id={this.state.id} img={this.state.img} title={this.state.title} model={this.state.model} price={this.state.price} idCat={this.state.idCat} desc={this.state.desc}countProduct={this.state.countProduct} isPopular={this.state.popular}  dataCategory={this.props.dataCategory} isShow={this.isEdit}/>}
                 </div>
             </div>
         )
@@ -139,5 +140,14 @@ export default class ProductsAdmin extends React.Component {
     }
     isEdit(){
         this.setState({isEdit:!this.state.isEdit})
+    }
+    updateProduct = (id, img, title, model, price,idCat, description, count, isPopular) => {
+        for(let i = 0; i< this.state.records.length; i ++){
+          if(this.state.records[i].id === id){
+            const mas = [...this.state.records]
+            mas.splice(i,1,{id,img,title,model,price, idCat,description,count,isPopular})
+            this.setState({records: mas})
+          }
+        }
     }
 }

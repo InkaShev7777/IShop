@@ -104,6 +104,12 @@ namespace MarcetUser.Controllers
         {
             this.unitOf.orderRepository.Delete(id);
         }
+        [HttpPost]
+        [Route("update-product")]
+        public void UpdateProduct(Product product)
+        {
+            this.unitOf.productRepository.Update(product);
+        }
     }
 }
 

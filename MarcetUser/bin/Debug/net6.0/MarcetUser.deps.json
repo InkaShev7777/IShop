@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "MarcetUser/1.0.0": {
         "dependencies": {
+          "AWSSDK.S3": "3.7.104.19",
           "DataAccessEF": "1.0.0",
           "Domain": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.13",
@@ -21,6 +22,25 @@
         },
         "runtime": {
           "MarcetUser.dll": {}
+        }
+      },
+      "AWSSDK.Core/3.7.106.39": {
+        "runtime": {
+          "lib/netcoreapp3.1/AWSSDK.Core.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.7.106.39"
+          }
+        }
+      },
+      "AWSSDK.S3/3.7.104.19": {
+        "dependencies": {
+          "AWSSDK.Core": "3.7.106.39"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/AWSSDK.S3.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.7.104.19"
+          }
         }
       },
       "Azure.Core/1.24.0": {
@@ -876,6 +896,20 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "AWSSDK.Core/3.7.106.39": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-F8YJ6QV7+btBpqo+9DfDu2+IziCLA7yDo5sdBAiJpF4Wdd4pL4YLF3sy2if0c9XsC8b3XThdoDJJ88AboDMkyg==",
+      "path": "awssdk.core/3.7.106.39",
+      "hashPath": "awssdk.core.3.7.106.39.nupkg.sha512"
+    },
+    "AWSSDK.S3/3.7.104.19": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lHzqZP7Z2SqIUV5IPlpGoZ6U8Ww6uP1An3cx9z9uIkzEKso8TBc8DoZMMPUDUknHOLVP7nKpTV6r4xH441/X+g==",
+      "path": "awssdk.s3/3.7.104.19",
+      "hashPath": "awssdk.s3.3.7.104.19.nupkg.sha512"
     },
     "Azure.Core/1.24.0": {
       "type": "package",

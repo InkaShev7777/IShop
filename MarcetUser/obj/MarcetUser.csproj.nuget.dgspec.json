@@ -185,6 +185,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "AWSSDK.S3": {
+              "target": "Package",
+              "version": "[3.7.104.19, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[6.0.13, )"

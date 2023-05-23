@@ -98,3 +98,5 @@
 /Users/ilyaschevchenko/Projects/MarcetUserWeb/MarcetUser/obj/Debug/net6.0/MarcetUser.pdb
 /Users/ilyaschevchenko/Projects/MarcetUserWeb/MarcetUser/obj/Debug/net6.0/MarcetUser.genruntimeconfig.cache
 /Users/ilyaschevchenko/Projects/MarcetUserWeb/MarcetUser/obj/Debug/net6.0/ref/MarcetUser.dll
+/Users/ilyaschevchenko/Projects/MarcetUserWeb/MarcetUser/bin/Debug/net6.0/AWSSDK.Core.dll
+/Users/ilyaschevchenko/Projects/MarcetUserWeb/MarcetUser/bin/Debug/net6.0/AWSSDK.S3.dll

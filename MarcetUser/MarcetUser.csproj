@@ -18,6 +18,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.13" />
     <PackageReference Include="StackExchange.Redis" Version="2.6.96" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="AWSSDK.S3" Version="3.7.104.19" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,6 +31,7 @@
     <None Remove="CacheFolder\" />
     <None Remove="StackExchange.Redis" />
     <None Remove="Newtonsoft.Json" />
+    <None Remove="AWSSDK.S3" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />

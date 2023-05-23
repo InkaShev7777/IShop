@@ -3,6 +3,8 @@ import DataTable from 'react-data-table-component'
 import Nav from './Nav'
 import AddProduct from './AddProduct'
 import EditProduct from './EditProduct'
+import axios from 'axios'
+
 export default class ProductsAdmin extends React.Component {
     constructor(props) {
         super(props)
@@ -109,6 +111,7 @@ export default class ProductsAdmin extends React.Component {
         this.isShow = this.isShow.bind(this)
         this.isEdit = this.isEdit.bind(this)
         this.updateProduct = this.updateProduct.bind(this)
+        this.AddProduct = this.AddProduct.bind(this)
     }
     render() {
         return (
@@ -119,7 +122,7 @@ export default class ProductsAdmin extends React.Component {
                         <input style={{marginBottom:0}} className='inp-admin' type="text" placeholder='Enter query...' onChange={this.handleFilter}/>
                     </div>
                     <DataTable title='Products' columns={this.state.columns} data={this.state.records} fixedHeader pagination actions={<button onClick={()=>{this.isShow()}} className='btn btn-success'>Add</button>}></DataTable>
-                    {this.state.addProduct && <AddProduct dataCategory={this.props.dataCategory}   isShow={this.isShow}/>}
+                    {this.state.addProduct && <AddProduct dataProduct={this.state.records} AddProduct={this.AddProduct} dataCategory={this.props.dataCategory}   isShow={this.isShow}/>}
                     {this.state.isEdit && <EditProduct updateProduct={this.updateProduct} getProducts={this.props.getProducts} id={this.state.id} img={this.state.img} title={this.state.title} model={this.state.model} price={this.state.price} idCat={this.state.idCat} desc={this.state.desc}countProduct={this.state.countProduct} isPopular={this.state.popular}  dataCategory={this.props.dataCategory} isShow={this.isEdit}/>}
                 </div>
             </div>
@@ -131,9 +134,12 @@ export default class ProductsAdmin extends React.Component {
         })
         this.setState({records: newDate})
     }
-    DeleteById(id){
+    async DeleteById(id){
         const tempArr = this.state.records.filter((el)=>{return el.id != id})
         this.setState({records:tempArr})
+        await axios.post(`https://localhost:7031/api/ControllerClass/delete-product?id=${id}`)
+      .then(res => {
+  })
     }
     isShow(){
         this.setState({addProduct: !this.state.addProduct})
@@ -149,5 +155,10 @@ export default class ProductsAdmin extends React.Component {
             this.setState({records: mas})
           }
         }
+    }
+    AddProduct(id, img, title, model, price,idCat, description, count, isPopular){
+        const mas = [...this.state.records]
+            mas.splice(this.state.records.length-1,1,{id,img,title,model,price, idCat,description,count,isPopular})
+            this.setState({records: mas})
     }
 }

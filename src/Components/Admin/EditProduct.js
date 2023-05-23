@@ -105,5 +105,6 @@ export default class EditProduct extends React.Component {
         })
         this.props.updateProduct(this.state.id,this.state.img,this.state.title,this.state.model,this.state.price,this.state.idCat,this.state.desc,this.state.countProduct,this.state.isPopular)
         this.props.getProducts()
+        this.props.isShow()
     }
 }

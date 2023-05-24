@@ -19,6 +19,8 @@ export default function Admin() {
   const [countCategories, setCountCategories] = useState(0)
   const [countOrders, setCountOrders] = useState(0)
   const [isAuthoriseAdmin, setIsAuthoriseAdmin] = useState(false)
+  const [idProductNow, setIdProductNow] = useState(0)
+  const [idCategoryNow, setIdCategoryNow] = useState(0)
   // Data from BD
   const [dataProduct,setDataProduct] = useState([]);
   const [dataCategories,setDataCategories] = useState([]);
@@ -54,6 +56,7 @@ export default function Admin() {
     axios.get(`https://localhost:7031/api/ControllerClass/get-all-product`)
       .then(res => {
         const rest = res.data.value;
+        setIdProductNow(rest[rest.length-1].id)
         setCountProducts(rest.length)
         setDataProduct(rest)
       })
@@ -63,6 +66,7 @@ export default function Admin() {
     axios.get(`https://localhost:7031/api/ControllerClass/get-all-category`)
       .then(res => {
         const rest = res.data.value;
+        setIdCategoryNow(rest[rest.length-1].id)
         setCountCategories(rest.length)
         setDataCategories(rest)
       })
@@ -117,8 +121,8 @@ export default function Admin() {
             }
             <div className='col'>
               {idCat === 1 &&<HomeAdmin countCategories={countCategories} countCustomers={countCustomers} countOrders={countOrders} countProducts={countProducts} Toggle={Toggle} />}
-              {idCat === 2 &&<CategoriesAdmin getCategories={getCategories}  Toggle={Toggle} dataCategories={dataCategories}/>}
-              {idCat === 3 && <ProductsAdmin getProducts={getProducts} data={dataProduct} dataCategory={dataCategories}  Toggle={Toggle}/>}
+              {idCat === 2 &&<CategoriesAdmin idCategoryNow={idCategoryNow} getCategories={getCategories}  Toggle={Toggle} dataCategories={dataCategories}/>}
+              {idCat === 3 && <ProductsAdmin idProductNow={idProductNow} getProducts={getProducts} data={dataProduct} dataCategory={dataCategories}  Toggle={Toggle}/>}
               {idCat === 4 && <CustomersAdmin dataUsers={dataUsers} data={dataAdmins} Toggle={Toggle}/>}
               {idCat === 5 &&  <OrdersAdmin data={dataOrders} updateOrders={getOrders}  Toggle={Toggle}/>}
             </div>

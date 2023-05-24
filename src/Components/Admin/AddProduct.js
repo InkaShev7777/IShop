@@ -13,7 +13,7 @@ export default class AddProduct extends React.Component {
       idCat: 0,
       desc: '',
       countProduct: 0,
-      isPopular: 0,
+      isPopular: 1,
       showImg: false
     }
     this.SelectCategory = this.SelectCategory.bind(this)
@@ -94,7 +94,7 @@ export default class AddProduct extends React.Component {
     })
       .then(res => {
         const mas = this.props.dataProduct
-        const id = mas.length
+        const id = mas.length+1
         this.props.AddProduct(id, this.state.img, this.state.title, this.state.model, this.state.price, this.state.idCat, this.state.desc, this.state.countProduct, this.state.isPopular)
       })
       this.props.isShow()

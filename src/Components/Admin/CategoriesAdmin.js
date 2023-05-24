@@ -6,6 +6,7 @@ import { ReactDOM } from 'react';
 import { render } from '@testing-library/react';
 import EditCategory from './EditCategory';
 import axios from 'axios';
+import { wait } from '@testing-library/user-event/dist/utils';
 
 
 class CategoriesAdmin extends React.Component {
@@ -62,29 +63,36 @@ class CategoriesAdmin extends React.Component {
         )
     }
 
-    async addcat(title) {
-        const temp = this.state.records
-        const idNow = temp[temp.length - 1].id + 1
-        const item = { id: idNow, title: title }
-        this.setState({ records: [...this.state.records, item] })
-        await axios.post(`https://localhost:7031/api/ControllerClass/add-category`, {
+   async addcat(title) {
+        axios.post(`https://localhost:7031/api/ControllerClass/add-category`, {
             "id": 0,
             "title": `${title}`
+        }).then(res => {
+            this.props.getCategories()
+            setTimeout(() => {
+                const item = { id: this.props.idCategoryNow, title: title }
+                this.setState({ records: [...this.state.records, item] })
+                this.isShow()
+            }, 2000)
         })
-            .then(res => {
-            })
-        this.props.getCategories()
-        this.isShow()
     }
-     async DeleteById(id) {
-        const tempArr = this.state.records.filter((el) => { return el.id != id })
-        this.setState({ records: tempArr })
-        await axios.post(`https://localhost:7031/api/ControllerClass/delete-category`, {
+    async DeleteById(id) {
+        axios.post(`https://localhost:7031/api/ControllerClass/delete-category`, {
             "id": id,
             "title": `test`
         })
             .then(res => {
+                this.setState({ status: res.data.value['status'] })
             })
+        setTimeout(() => {
+            if (this.state.status === 400) {
+                alert("Вы не можете удалить эту категорию, так как в ней есть товары!!!!")
+            }
+            else {
+                const tempArr = this.state.records.filter((el) => { return el.id != id })
+                this.setState({ records: tempArr })
+            }
+        }, 2000)
         this.props.getCategories()
     }
     async editCategory(id, title) {
@@ -102,6 +110,7 @@ class CategoriesAdmin extends React.Component {
             .then(res => {
             })
         this.props.getCategories()
+        this.setEdit()
     }
     setEdit() {
         this.setState({ isEdit: !this.state.isEdit })
@@ -116,8 +125,5 @@ class CategoriesAdmin extends React.Component {
         this.setState({ isAdd: !this.state.isAdd })
         console.log(this.state.isAdd);
     }
-
-
-
 }
 export default CategoriesAdmin

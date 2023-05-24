@@ -82,9 +82,23 @@ namespace MarcetUser.Controllers
         }
         [HttpPost]
         [Route("delete-category")]
-        public void DeleteCategory(Category category)
+        public IResult DeleteCategory(Category category)
         {
-            this.unitOf.categoryRepository.Delete(category.Id);
+            List<Product> products = this.unitOf.productRepository.GetAllProduct();
+            int count = 0;
+            foreach(var item in products)
+            {
+                if(item.IdCategory == category.Id)
+                {
+                    count++;
+                }
+            }
+            if(count == 0)
+            {
+                this.unitOf.categoryRepository.Delete(category.Id);
+                return Results.Ok();
+            }
+            return Results.Problem(statusCode: 400);
         }
         [HttpPost]
         [Route("update-order")]

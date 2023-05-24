@@ -38,10 +38,12 @@ namespace DataAccessEF.Repositories
         {
             lock (db)
             {
-                this.db.Set<T>().Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                //this.db.Set<T>().Update(item);
-                //var it = this.db.Set<T>().;
-                this.db.SaveChanges();
+                try
+                {
+                    this.db.Set<T>().Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    this.db.SaveChanges();
+                }
+                catch(Exception ex){}
             }
         }
     }
